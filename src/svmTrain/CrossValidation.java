@@ -21,7 +21,7 @@ public class CrossValidation {
 		
 		List<Double> CVResult = svm_train.CVResult;
 		for(int i=0;i<CVResult.size();i++){
-			System.out.println("crossvalidation result"+ CVResult.get(i));
+			//System.out.println("crossvalidation result"+ CVResult.get(i));
 			if(max < CVResult.get(i)){
 				max = CVResult.get(i);
 				tmp = i;
