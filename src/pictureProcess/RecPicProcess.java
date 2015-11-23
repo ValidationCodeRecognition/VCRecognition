@@ -13,15 +13,26 @@ import javax.imageio.ImageIO;
 
 public class RecPicProcess extends Process
 {
+	private BufferedImage pic;
+	
 	public RecPicProcess(String FilePath)
 	{
 		super(FilePath);
 	}
 	
+	public RecPicProcess(BufferedImage pic)
+	{
+		super(pic);
+	}
+	
 	public List<BufferedImage> process() throws Exception
 	{
 		List<BufferedImage> result = new ArrayList<BufferedImage>();
-		BufferedImage code = importImage();
+		BufferedImage code = null;
+		if(this.pic==null)
+			code = importImage();
+		else
+			code = this.pic;
 		if(code!=null)
 		{
 			code = backgroundProcess(code);

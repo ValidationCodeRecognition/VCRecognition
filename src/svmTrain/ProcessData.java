@@ -15,7 +15,7 @@ public class ProcessData {
 	
 	private int isBlack(int colorInt){
 		Color color = new Color(colorInt);
-		if(color.getBlue()+color.getGreen()+color.getRed() <= 120){
+		if(color.getRed()<=60 && color.getGreen()<=60 && color.getBlue()<=60){
 			return 1;
 		}else{
 			return 0;

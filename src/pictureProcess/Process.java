@@ -6,9 +6,16 @@ import java.awt.image.BufferedImage;
 public abstract class Process 
 {
 	String FilePath;
+	BufferedImage pic;
 	
-	public String getFilePath() {
+	public String getFilePath() 
+	{
 		return FilePath;
+	}
+	
+	public Process(BufferedImage pic)
+	{
+		this.pic = pic;
 	}
 	
 	protected boolean isBlack(int colorInt)
