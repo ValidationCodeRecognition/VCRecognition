@@ -19,7 +19,7 @@ public class VCR
 	{
 		RecPicProcess rpp = new RecPicProcess(code);
 		List<BufferedImage> result = rpp.process();
-		
+		svm_predict.main(null);
 		
 		return ""	;
 	}
