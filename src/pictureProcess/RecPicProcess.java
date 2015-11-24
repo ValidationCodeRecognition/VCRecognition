@@ -13,7 +13,6 @@ import javax.imageio.ImageIO;
 
 public class RecPicProcess extends Process
 {
-	private BufferedImage pic;
 	
 	public RecPicProcess(String FilePath)
 	{
@@ -29,7 +28,7 @@ public class RecPicProcess extends Process
 	{
 		List<BufferedImage> result = new ArrayList<BufferedImage>();
 		BufferedImage code = null;
-		if(this.pic==null)
+		if(this.FilePath!=null && !this.FilePath.isEmpty())
 			code = importImage();
 		else
 			code = this.pic;

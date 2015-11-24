@@ -17,7 +17,7 @@ public class TrainPicProcess extends Process
 	public boolean process() throws Exception
 	{
 		File dir = new File(FilePath);
-		File dataFile = new File("data"+File.separator+"TestData");
+		File dataFile = new File("data"+File.separator+"TrainData");
 		int notProcess = 0;
 		if(dir.exists() && dir.isDirectory())
 		{			

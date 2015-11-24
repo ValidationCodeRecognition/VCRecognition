@@ -5,8 +5,10 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.List;
 
 import com.jhlabs.image.ScaleFilter;
+
 import javax.imageio.ImageIO;
 
 public class ProcessData {
@@ -24,30 +26,37 @@ public class ProcessData {
 		}
 	}
 	
-	public void scalePredictBufferedImage(BufferedImage img) throws IOException{
-		ScaleFilter sf = new ScaleFilter(10, 10);
-		BufferedImage imgdest = new BufferedImage(10, 10,img.getType());
-		imgdest = sf.filter(img, imgdest);
-		File data = new File("data"+File.separator+"predictSVMData");
+	public String scalePredictBufferedImage(List<BufferedImage> imgs) throws IOException{
+		
+		File data = new File("data"+File.separator+"predictSVMData.txt");
 		FileOutputStream fs = new FileOutputStream(data);
-		fs.write(("predictData").getBytes());
-		int index = 1;
-		for(int i=0;i<imgdest.getWidth();i++){
-			for(int j=0;j<imgdest.getHeight();j++){
-				fs.write((index++ + ":" + isBlack(imgdest.getRGB(i, j)) + " ").getBytes());
+		
+		for(int k=0;k<imgs.size();k++)
+		{
+			BufferedImage img = imgs.get(k);
+			ScaleFilter sf = new ScaleFilter(10, 10);
+			BufferedImage imgdest = new BufferedImage(10, 10,img.getType());
+			imgdest = sf.filter(img, imgdest);
+			fs.write(("1 ").getBytes());
+			int index = 1;
+			for(int i=0;i<imgdest.getWidth();i++){
+				for(int j=0;j<imgdest.getHeight();j++){
+					fs.write((index++ + ":" + isBlack(imgdest.getRGB(i, j)) + " ").getBytes());
+				}
 			}
+			fs.write("\r\n".getBytes());
 		}
-		fs.write("\r\n".getBytes());
 		fs.close();
+		return data.getAbsolutePath();
 	}
 	
 	public void scaleTraindata() throws Exception {
-		File dataFile = new File("data"+File.separator+"TestData");
+		File dataFile = new File("data"+File.separator+"TrainData");
 		File[] dirs = dataFile.listFiles();
 		for(File dir : dirs){
 			if(dir.getName().charAt(0) == '.')
 				continue;
-			System.out.println(dir.getName());
+			//System.out.println(dir.getName());
 			File[] files = dir.listFiles();
 			for (File file : files) {
 				if(!file.getName().endsWith(".JPG"))
@@ -72,7 +81,7 @@ public class ProcessData {
 				continue;
 			}else{
 				BufferedImage img = ImageIO.read(file);
-				fs.write((file.getName().charAt(0)+" ").getBytes());
+				fs.write((file.getName().split("-")[0]+" ").getBytes());
 				int index = 1;
 				for(int i=0;i<img.getWidth();i++){
 					for(int j=0;j<img.getHeight();j++){
