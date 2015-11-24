@@ -28,7 +28,7 @@ public class ProcessData {
 		ScaleFilter sf = new ScaleFilter(10, 10);
 		BufferedImage imgdest = new BufferedImage(10, 10,img.getType());
 		imgdest = sf.filter(img, imgdest);
-		File data = new File("data"+File.separator+"predictSVMData");
+		File data = new File("data"+File.separator+"predictSVMData.txt");
 		FileOutputStream fs = new FileOutputStream(data);
 		fs.write(("predictData").getBytes());
 		int index = 1;
@@ -47,7 +47,7 @@ public class ProcessData {
 		for(File dir : dirs){
 			if(dir.getName().charAt(0) == '.')
 				continue;
-			System.out.println(dir.getName());
+			//System.out.println(dir.getName());
 			File[] files = dir.listFiles();
 			for (File file : files) {
 				if(!file.getName().endsWith(".JPG"))
