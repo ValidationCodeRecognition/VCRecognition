@@ -26,8 +26,11 @@ public class ProcessData {
 		}
 	}
 	
+
 	public String scalePredictBufferedImage(List<BufferedImage> imgs) throws IOException{
-		
+
+
+
 		File data = new File("data"+File.separator+"predictSVMData.txt");
 		FileOutputStream fs = new FileOutputStream(data);
 		
